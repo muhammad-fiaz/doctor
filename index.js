@@ -9,9 +9,9 @@ const exec = require('@actions/exec');
 try {
     // Set the input directory to the root of the repository
     const inputDirectory = '.';
-    const cssFile = 'default.css';
-    const htmlFile = 'default.html';
-    const jsFile = 'default.js';
+    const cssFile = fs.existsSync('styles.css') ? 'styles.css' : 'default.css';
+    const htmlFile = fs.existsSync('index.html') ? 'index.html' : 'default.html';
+    const jsFile = fs.existsSync('script.js') ? 'script.js' : 'default.js';
 
     // Get all markdown files
     const getMarkdownFiles = function(dir, fileList) {
@@ -36,7 +36,8 @@ try {
         const html = converter.makeHtml(markdown);
         const css = fs.readFileSync(cssFile, 'utf8');
         const js = fs.readFileSync(jsFile, 'utf8');
-        const output = `<style>${css}</style><div id="content">${html}</div><script>${js}</script>`;
+        const template = fs.readFileSync(htmlFile, 'utf8');
+        const output = template.replace('<body>', `<body><style>${css}</style><div id="content">${html}</div><script>${js}</script>`);
         fs.writeFileSync(file.replace('.md', '.html'), output);
     });
 

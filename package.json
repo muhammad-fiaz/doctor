@@ -4,7 +4,7 @@
   "description": "Doctor Action: Easily build & deploy documentation websites from markdown files in GitHub workflows. Customize themes & functionality with CSS & JS.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+      "deploy": "gh-pages -d build"
   },
   "keywords": [],
   "author": "muhammad-fiaz",

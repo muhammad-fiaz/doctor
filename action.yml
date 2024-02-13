@@ -8,5 +8,5 @@ inputs:
     description: 'The CSS file to apply to the HTML'
     required: true
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'node12'
+  main: 'index.js'

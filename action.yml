@@ -1,13 +1,12 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Build and Deploy Documentation'
+description: 'Builds a documentation website from markdown files and deploys it to GitHub'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  input-directory:
+    description: 'The directory that contains the markdown files'
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  css-file:
+    description: 'The CSS file to apply to the HTML'
+    required: true
 runs:
-  using: 'node20'
-  main: 'index.js'
+  using: 'docker'
+  image: 'Dockerfile'
